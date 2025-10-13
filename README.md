@@ -47,3 +47,63 @@ int main() {
     cout << std::setprecision(2);//сводим все value к одному знаку после запятой
     cout<< " 1) mid_value = " << x_random/kolvo<<" 2) mid value = "<<y_random/kolvo << " 3) mid value = "<<z_random/kolvo;
 }
+Task 8.1
+#include <iostream>
+
+using namespace std;
+
+int main() {
+    int N;
+    cout << "input num"<< endl;
+    cin >> N;
+    
+ if(N < -1000000000 || N > 1000000000){
+        cerr << "error, your num out of range, sorry "<< endl;
+        return 1;
+    }
+    
+ double *p = nullptr;// Создаем первый  указатель
+        p = new double(static_cast<double>(N)); // Выделяем память под double
+        double **pp = &p; // Создаем второй указатель
+    cout << "your num = "<< *p << endl; // Выводим значение
+     delete p;
+    
+   return 0;
+}
+
+
+Task 8.2
+#include <iostream>
+#include <cstdlib> // rand(), srand()
+#include <ctime>   // time()
+#include <algorithm> // std::shuffle()
+
+using namespace std;
+
+int main() {
+    int n;
+    
+cout << "input size "<< endl;
+    cin >> n;
+        if(n <= 0 || n > 1000){
+        cerr << "Error, num out fo size." << endl;
+        return 1;
+    }
+    
+// Выделяем память под массив
+    double* arr = new double[n];
+        // Заполняем массив числами от 1 до n
+    for(int i = 0; i < n; ++i)
+        arr[i] = static_cast<double>(i + 1);
+    
+srand(time(nullptr)); // инициализация генератора случайных чисел
+    random_shuffle(arr, arr+n); // перемешиваем элементы
+        double sum = 0;    // Сумма элементов 
+
+for(int i = 0; i < n; ++i)
+        sum += arr[i];
+        cout << "sum "<< sum << endl;
+    
+delete[] arr;// Освобождаем память
+        return 0;
+}
